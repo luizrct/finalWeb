@@ -1,0 +1,44 @@
+<%- include("partials/header") %>
+<main class="container vh-100 d-flex">
+    <form class="w-25 m-auto" action="/register" method="post">
+        <img
+            src="/public/img/chroniccler-logo.png"
+            class="mb-3 w-50 d-flex mx-auto"
+        />
+        <div class="mb-3">
+            <label for="exampleInputNome" class="form-label">Nome</label>
+            <input
+                class="form-control"
+                id="exampleInputNome"
+                name="nome"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email</label>
+            <input
+                class="form-control"
+                id="exampleInputEmail"
+                name="email"
+                type="email"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword" class="form-label"
+                >Senha</label
+            >
+            <input
+                type="password"
+                class="form-control"
+                id="exampleInputSenha"
+                name="password"
+            />
+        </div>
+        <% if(showError == true) { %>
+            <p style="color: red;">Por favor, preencha o formulário corretamente.</p>
+        <% } %>
+        <button type="submit" class="btn btn-primary w-100">
+            Cadastrar
+        </button>
+    </form>
+</main>
+<%- include("partials/footer") %>
