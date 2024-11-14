@@ -34,7 +34,11 @@
             />
         </div>
         <% if(showError == true) { %>
-            <p style="color: red;">Por favor, preencha o formulário corretamente.</p>
+            <% if(tipoErro == 1) {%>
+                <p style="color: red;">Por favor, preencha o formulário corretamente.</p>
+            <% }else if(tipoErro == 2){ %>
+                <p style="color: red;">Já existe um usuário com esse Email.</p>
+            <% } %>
         <% } %>
         <button type="submit" class="btn btn-primary w-100">
             Cadastrar
