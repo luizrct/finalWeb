@@ -13,16 +13,14 @@ class LoginController{
     async postRegister(req, res){
         const result = validationResult(req)
         if(result.isEmpty()){
+            //verifica se existe um usuário com o mesmo email
             if(verificador1(req.body.email)){
-                const name = req.body.nome
-                const email = req.body.email
-                const password = req.body.password
-                await User.create({name, email, password})
-                res.redirect("/login")
+               res.redirect("/login")
             }else{
-                 res.render("register", {title:"Registro", showError:true, tipoErro:2})
+                res.render("register", {title:"Registro", showError:true, tipoErro:2})
             }
         }else{
+            console.log("O formulário não foi preenchido corretamente")
             res.render("register", {title:"Registro", showError:true, tipoErro:1})
         }
     }
@@ -39,15 +37,10 @@ class LoginController{
 //função que percorre banco de dados para verificar se já existe um usuário com o mesmo email
 async function verificador1(email){
     try{
-        const usuario = User.findOne({ where: {email}})
-        if(usuario){
-            return true
-        }else{
-            return false
-        }
-    }catch (error){
+        const usuario = await User.findOne({ where: { email } })
+        return usuario != null
+    }catch(error){
         console.log(error)
-        return false
     }
 }
 
