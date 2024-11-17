@@ -24,7 +24,6 @@ class LoginController{
             res.render("register", {title:"Registro", showError:true, tipoErro:2})
            }
         }else{
-            console.log("AQUI 2")
             res.render("register", {title:"Registro", showError:true, tipoErro:1})
         }
     }
