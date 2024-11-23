@@ -42,8 +42,14 @@
             <label class="form-check-label" for="exampleCheck1"
                 >Mantenha-me conectado</label>
         </div>
-        <% if(showError == true) { %>
-            <p style="color: red;">Email ou senha inválidos., por favor tente novamente.</p>
+        <% if(showError) { %>
+            <% if(tipoErro == 1){ %>
+                <p style="color: red;">Por favor, preencha o formulário corretamente</p>
+            <% }else if(tipoErro == 2){ %>
+                <p style="color: red;">Ainda não há um usuário cadastrado com esse Email. Registre-se</p>
+            <% }else if(tipoErro == 3){ %>
+                <p style="color: red;">Senha incorreta</p>
+            <% } %>
         <% } %>
         <div class="mb-3">
             <p>
