@@ -19,9 +19,18 @@
           <tr>
             <td><%= financa.id %></td>
             <td><%= financa.tipo %></td>
-            <td><%= financa.valor %></td>
-            <td>2024/24/23</td>
-            <th scope="col"><a href=<%= `/financas/${financa.id}/update` %> class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Editar</a>
+            <td><%= financa.valor, " R$" %></td>
+            <td>
+                <% 
+                  const dataObj = new Date(financa.data); 
+                  const dia = String(dataObj.getDate()).padStart(2, '0');
+                  const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+                  const ano = dataObj.getFullYear();
+                  const dataFormatada = `${dia}/${mes}/${ano}`;
+                %>
+                <%= dataFormatada %>
+              </td>
+            <th scope="col"><a href=<%= `/finance/${financa.id}/update` %> class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Editar</a>
             </th>
                 <th scope="col"><a class="delete-link link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href=<%= `/financas/${financa.id}/delete` %>>Excluir</a>
             </th>
