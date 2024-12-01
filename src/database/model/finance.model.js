@@ -16,6 +16,10 @@ Finance.init(
         valor: {
             type: DataTypes.FLOAT,
             allowNull: false,
+        },
+        data: {
+            type: DataTypes.DATE,
+            allowNull: false            
         }
     },
     {

@@ -7,13 +7,26 @@
     <thead>
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Finalizada</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Data</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
+        <% financas.forEach((financa)=>{ %>
+          <tr>
+            <td><%= financa.id %></td>
+            <td><%= financa.tipo %></td>
+            <td><%= financa.valor %></td>
+            <td>2024/24/23</td>
+            <th scope="col"><a href=<%= `/financas/${financa.id}/update` %> class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Editar</a>
+            </th>
+                <th scope="col"><a class="delete-link link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href=<%= `/financas/${financa.id}/delete` %>>Excluir</a>
+            </th>
+          </tr>
+        <% })%>
     </tbody>
 </table>
 <%- include("partials/footer") %>

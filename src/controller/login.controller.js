@@ -27,6 +27,7 @@ class LoginController{
         if(result.isEmpty()){
            const verificacao1 = await verificador1(req.body.email)
            if(verificacao1){
+            //ainda não existe um usuário com esse email
             const name = req.body.nome 
             const email = req.body.email 
             const password = req.body.password
@@ -39,13 +40,16 @@ class LoginController{
                 }
             })
            }else{
+            //já existe um usuário cadastrado com esse email
             res.render("register", {title:"Registro", showError:true, tipoErro:2})
            }
         }else{
+            //formulário não foi preenchido corretamente
             res.render("register", {title:"Registro", showError:true, tipoErro:1})
         }
     }
 
+    
     postLogin(req, res){
         const result = validationResult(req)
         if(result.isEmpty()){

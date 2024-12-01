@@ -6,6 +6,6 @@ const router = new express.Router
 const financeController = new FinanceController()
 
 router.get("/finances", financeController.renderFinance)
-
+router.get("/finance/new", financeController.renderNewForm)
 
 export default router
