@@ -8,7 +8,10 @@ const financeController = new FinanceController()
 router.get("/finances", financeController.renderFinance)
 router.get("/finance/new", financeController.renderNewForm)
 router.get("/finance/:id/update", financeController.renderEditForm)
+router.get("/finance/:id/delete", financeController.renderDelete)
 
 router.post("/finance/new", body("tipo").notEmpty(), body("valor").notEmpty().isNumeric(), body("data").notEmpty(), financeController.createFinance)
+router.post("/finance/:id/update",  body("tipo").notEmpty(), body("valor").notEmpty().isNumeric(), body("data").notEmpty(), financeController.updateFinance)
+router.post("/finance/:id/delete", financeController.postDelete)
 
 export default router
