@@ -19,7 +19,7 @@
         <form class="row g-2" action="/finances" method="post">
             <!-- Select Tipo de Receita -->
             <div class="col-6 col-md-2">
-                <label for="tipoReceita" class="form-label visually-hidden">Tipo</label>
+                <p>Tipo</p>
                 <select class="form-select" id="tipoReceita" name="tipoReceita">
                     <option value="ambos">Ambos</option>
                     <option value="receita">Receita</option>
@@ -29,24 +29,12 @@
 
             <!-- Select Maiores ou Menores -->
             <div class="col-6 col-md-2">
-                <label for="valorFiltro" class="form-label visually-hidden">Valor</label>
+                <p>Crescimento</p>
                 <select class="form-select" id="valorFiltro" name="valorFiltro">
                     <option value="nulo">Nulo</option>
                     <option value="maiores">Maiores</option>
                     <option value="menores">Menores</option>
                 </select>
-            </div>
-
-            <!-- Input Data Início -->
-            <div class="col-6 col-md-3">
-                <label for="dataInicio" class="form-label visually-hidden">Data Início</label>
-                <input type="date" class="form-control" id="dataInicio" name="dataInicio" placeholder="Início">
-            </div>
-
-            <!-- Input Data Fim -->
-            <div class="col-6 col-md-3">
-                <label for="dataFim" class="form-label visually-hidden">Data Fim</label>
-                <input type="date" class="form-control" id="dataFim" name="dataFim" placeholder="Fim">
             </div>
             
             <!-- Botão Filtrar -->

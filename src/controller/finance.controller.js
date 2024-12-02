@@ -102,23 +102,13 @@ class FinanceController{
             if(result.isEmpty()){
                 var tipo = req.body.tipoReceita
                 var valor = req.body.valorFiltro
-                var data1 = req.body.dataInicio
-                var data2 = req.body.dataFim
                 console.log("TIPO: ", tipo)
                 console.log("VALOR: ", valor)
-                if(tipo != null && valor === "nulo" && !data1){
+                if(tipo != null && valor === "nulo"){
                     await filtro1(tipo, req, res)
-                }else if(tipo != null && valor !== "nulo" && !data1){
+                }else if(tipo != null && valor !== "nulo"){
                     await filtro2(tipo, valor, req, res)
                 }
-                /*if(tipo != null && valor === "nulo", !data1){
-                    console.log("ENTROU AQUI 1")
-                   await filtro1(tipo, req, res)
-                }else if(tipo != null && valor !== "nulo", !data1){
-                    console.log("ENTROU AQUI 2")
-                    await filtro2(tipo, valor, req, res)
-                }
-                    */
             }else{}
         }else{
             res.redirect("/login")
@@ -146,7 +136,8 @@ async function filtro2(tipo, valor, req, res){
     }else if(valor == "menores"){
         crescimento = 'ASC'
     }
-    console.log("CRESCIMENTO: ", crescimento)
+    const receitas = await Finance.findAll({where: {userId:req.session.userId, tipo:tipo}, order: [['id', crescimento]]})
+    res.render("finance_list.ejs", {title:"Receitas", financas:receitas})
 }
 
 
