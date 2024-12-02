@@ -13,5 +13,5 @@ router.get("/finance/:id/delete", financeController.renderDelete)
 router.post("/finance/new", body("tipo").notEmpty(), body("valor").notEmpty().isNumeric(), body("data").notEmpty(), financeController.createFinance)
 router.post("/finance/:id/update",  body("tipo").notEmpty(), body("valor").notEmpty().isNumeric(), body("data").notEmpty(), financeController.updateFinance)
 router.post("/finance/:id/delete", financeController.postDelete)
-
+router.post("/finances", body("tipoReceita").notEmpty(), financeController.financeFiltro)
 export default router

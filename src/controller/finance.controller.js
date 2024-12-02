@@ -95,9 +95,59 @@ class FinanceController{
             res.redirect("/login")
         }
     }
+
+    async financeFiltro(req, res){
+        if(req.session.userId){
+            const result = validationResult(req)
+            if(result.isEmpty()){
+                var tipo = req.body.tipoReceita
+                var valor = req.body.valorFiltro
+                var data1 = req.body.dataInicio
+                var data2 = req.body.dataFim
+                console.log("TIPO: ", tipo)
+                console.log("VALOR: ", valor)
+                if(tipo != null && valor === "nulo" && !data1){
+                    await filtro1(tipo, req, res)
+                }else if(tipo != null && valor !== "nulo" && !data1){
+                    await filtro2(tipo, valor, req, res)
+                }
+                /*if(tipo != null && valor === "nulo", !data1){
+                    console.log("ENTROU AQUI 1")
+                   await filtro1(tipo, req, res)
+                }else if(tipo != null && valor !== "nulo", !data1){
+                    console.log("ENTROU AQUI 2")
+                    await filtro2(tipo, valor, req, res)
+                }
+                    */
+            }else{}
+        }else{
+            res.redirect("/login")
+        }
+    }
+
 }
 
+async function filtro1(tipo, req, res) {
+    if(tipo === "ambos"){
+        res.redirect("/finances")
+    }else if(tipo === "receita"){
+        const receitas = await Finance.findAll({where: {userId:req.session.userId, tipo:"receita"}, order: [['id', 'ASC']]})
+        res.render("finance_list.ejs", {title:"Receitas", financas:receitas})
+    }else if(tipo == "despesa"){
+        const despesas = await Finance.findAll({where: {userId:req.session.userId, tipo:"despesa"}, order: [['id', 'ASC']]})
+        res.render("finance_list.ejs", {title:"Receitas", financas:despesas})
+    }
+}
 
+async function filtro2(tipo, valor, req, res){
+    var crescimento = ""
+    if(valor === "maiores"){
+        crescimento = 'DEC'
+    }else if(valor == "menores"){
+        crescimento = 'ASC'
+    }
+    console.log("CRESCIMENTO: ", crescimento)
+}
 
 
 export default FinanceController

@@ -2,12 +2,12 @@
 <%- include("partials/navbar") %>
 <div class="d-flex flex-row justify-content-center">
   <form class="w-50 mt-3 d-flex flex-column align-items-center row g-3 needs-validation" novalidate action="/finance/<%= id %>/delete" method="post">
-      <h2 class="text-center mt-3">Excluir tarefa</h2>
+      <h2 class="text-center mt-3">Excluir receita</h2>
       <p>
         Você tem certeza que deseja excluir a receita?
       </p>
       <div class=" d-flex flex-row align-items-center mt-3">
-          <a href="/tasks" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i class="bi bi-arrow-left me-3"></i>Voltar</a>
+          <a href="/finances" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i class="bi bi-arrow-left me-3"></i>Voltar</a>
           <span class="spacer"></span>
           <button type="submit" class="btn btn-danger w-25">Sim</button>
       </div>

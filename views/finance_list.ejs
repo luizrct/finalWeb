@@ -13,7 +13,51 @@
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
+    <tr>
+      <h5>Filtros</h5>
+      <div class="container mt-3">
+        <form class="row g-2" action="/finances" method="post">
+            <!-- Select Tipo de Receita -->
+            <div class="col-6 col-md-2">
+                <label for="tipoReceita" class="form-label visually-hidden">Tipo</label>
+                <select class="form-select" id="tipoReceita" name="tipoReceita">
+                    <option value="ambos">Ambos</option>
+                    <option value="receita">Receita</option>
+                    <option value="despesa">Despesa</option>
+                </select>
+            </div>
+
+            <!-- Select Maiores ou Menores -->
+            <div class="col-6 col-md-2">
+                <label for="valorFiltro" class="form-label visually-hidden">Valor</label>
+                <select class="form-select" id="valorFiltro" name="valorFiltro">
+                    <option value="nulo">Nulo</option>
+                    <option value="maiores">Maiores</option>
+                    <option value="menores">Menores</option>
+                </select>
+            </div>
+
+            <!-- Input Data Início -->
+            <div class="col-6 col-md-3">
+                <label for="dataInicio" class="form-label visually-hidden">Data Início</label>
+                <input type="date" class="form-control" id="dataInicio" name="dataInicio" placeholder="Início">
+            </div>
+
+            <!-- Input Data Fim -->
+            <div class="col-6 col-md-3">
+                <label for="dataFim" class="form-label visually-hidden">Data Fim</label>
+                <input type="date" class="form-control" id="dataFim" name="dataFim" placeholder="Fim">
+            </div>
+            
+            <!-- Botão Filtrar -->
+            <div class="col-12 col-md-2 d-grid">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        </form>
+    </div>
+    </tr>
     </thead>
+    <h3>Receitas</h3>
     <tbody>
         <% financas.forEach((financa)=>{ %>
           <tr>
