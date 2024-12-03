@@ -130,14 +130,19 @@ async function filtro1(tipo, req, res) {
 }
 
 async function filtro2(tipo, valor, req, res){
-    var crescimento = ""
+    var crescimento = ''
     if(valor === "maiores"){
-        crescimento = 'DEC'
+        crescimento = 'DESC'
     }else if(valor == "menores"){
         crescimento = 'ASC'
     }
-    const receitas = await Finance.findAll({where: {userId:req.session.userId, tipo:tipo}, order: [['id', crescimento]]})
-    res.render("finance_list.ejs", {title:"Receitas", financas:receitas})
+    if(tipo === 'ambos'){
+        const receitas = await Finance.findAll({where: {userId:req.session.userId}, order: [['valor', crescimento], ['id', 'ASC']]})
+        res.render("finance_list.ejs", {title:"Receitas", financas:receitas})
+    }else{
+        const receitas = await Finance.findAll({where: {userId:req.session.userId, tipo}, order: [['valor', crescimento], ['id', 'ASC']]})
+        res.render("finance_list.ejs", {title:"Receitas", financas:receitas})
+    }
 }
 
 
